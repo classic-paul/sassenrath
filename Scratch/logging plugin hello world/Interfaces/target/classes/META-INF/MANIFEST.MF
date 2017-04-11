@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1491939548740
+Build-Jdk: 1.8.0_101
+Built-By: Paul
+Bundle-Activator: paulpeacock.sassenrath.interfaces.Activator
+Bundle-ManifestVersion: 2
+Bundle-Name: Interfaces OSGi Bundle
+Bundle-SymbolicName: paulpeacock.sassenrath.Interfaces
+Bundle-Version: 0.00.0.0002
+Created-By: Apache Maven Bundle Plugin
+Export-Package: paulpeacock.sassenrath.interfaces;uses:="org.osgi.framew
+ ork,org.slf4j";version="0.00.0.0002"
+Import-Package: org.osgi.framework;version="[1.6,2)",org.slf4j;version="
+ [1.7,2)"
+Tool: Bnd-1.50.0

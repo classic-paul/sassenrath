@@ -1,0 +1,4 @@
+paulpeacock\sassenrath\interfaces\PluginAbstract.class
+paulpeacock\sassenrath\interfaces\PluginInterface.class
+paulpeacock\sassenrath\interfaces\Activator.class
+paulpeacock\sassenrath\interfaces\Plugin.class
