@@ -1,6 +1,6 @@
 package io.github.pcp1976.sassenrath.api;
 
-import java.io.File;
+import java.nio.file.Path;
 
 /*
  *  Represents a plugin component consumed by the sassenrath core application.
@@ -24,7 +24,7 @@ public interface Plugin {
 	 * @param	file	The input file to process
 	 * @param	plugin	Represents the originator of the file
 	 */
-	public void enqueue(File file, Plugin plugin);
+	public void enqueue(Path file, Plugin plugin);
 	
 	/*
 	 * Commence producing output
@@ -56,4 +56,9 @@ public interface Plugin {
 	 * Register a plugin as a client interested in this plugin's output
 	 */
 	public void registerClient(Plugin plugin);
+
+	/*
+	 * Simple factory method
+	 */
+	public Plugin getNewPlugin();
 }

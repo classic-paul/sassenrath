@@ -1,6 +1,6 @@
 package io.github.pcp1976.sassenrath.renamerplugin;
 
-import java.io.File;
+import java.nio.file.Path;
 
 import org.osgi.service.component.annotations.*;
 
@@ -23,7 +23,7 @@ public class RenamerPlugin implements Plugin {
 	}
 
 	@Override
-	public void enqueue(File file, Plugin plugin) {
+	public void enqueue(Path file, Plugin plugin) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
@@ -63,6 +63,12 @@ public class RenamerPlugin implements Plugin {
 	public void registerClient(Plugin plugin) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Plugin getNewPlugin() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
