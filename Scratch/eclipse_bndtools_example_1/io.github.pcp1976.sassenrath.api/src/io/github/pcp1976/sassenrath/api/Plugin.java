@@ -13,6 +13,12 @@ public interface Plugin {
 	public String getName();
 	
 	/*
+	 * Configure the plugin
+	 * Typically this would involve the plugin displaying a configuration UI to the user
+	 */
+	public void configure();
+	
+	/*
 	 * Add a file to the plugin's input queue.
 	 * 
 	 * @param	file	The input file to process
