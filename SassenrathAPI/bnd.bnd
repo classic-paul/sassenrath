@@ -1,0 +1,3 @@
+-runfw: org.apache.felix.framework;version='[5.4.0,5.4.0]'
+-runee: OSGi/Minimum-1.2
+Export-Package: io.github.pcp1976.sassenrath.api.extend

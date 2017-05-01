@@ -1,0 +1,3 @@
+Bundle-Version: 0.0.0.${tstamp}
+Private-Package: io.github.pcp1976.sassenrath.pluginempty
+Export-Package: io.github.pcp1976.sassenrath.api.extend
