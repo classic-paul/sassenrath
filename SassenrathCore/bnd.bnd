@@ -13,6 +13,6 @@ Bundle-Version: 0.0.0.${tstamp}
 -runee: OSGi/Minimum-1.2
 -runfw: org.apache.felix.framework;version='[5.4.0,5.4.0]'
 Export-Package: \
-	io.gihub.pcp1976.sassenrath.base,\
+	io.github.pcp1976.sassenrath.base,\
 	io.github.pcp1976.sassenrath.util
 -sub: *.bnd

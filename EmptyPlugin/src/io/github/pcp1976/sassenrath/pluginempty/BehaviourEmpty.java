@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.github.pcp1976.sassenrath.api.extend.Job;
-import io.github.pcp1976.sassenrath.api.extend.PluginBehaviour;
+import io.github.pcp1976.sassenrath.api.extend.Behaviour;
 
-public class BehaviourEmpty implements PluginBehaviour{
+public class BehaviourEmpty implements Behaviour{
 	/**
 	 * Logger for this class
 	 */

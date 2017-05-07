@@ -3,11 +3,11 @@ package io.github.pcp1976.sassenrath.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.gihub.pcp1976.sassenrath.base.ConcreteJob;
 import io.github.pcp1976.sassenrath.api.extend.*;
+import io.github.pcp1976.sassenrath.base.ConcreteJob;
 
 public class PluginHost implements Pipe {
-	private PluginBehaviour behaviour;
+	private Behaviour behaviour;
 	private List<Job> jobList = new ArrayList<>();
 	private List<Source> isSinkOf = new ArrayList<>();
 	private List<Sink> isSourceFor = new ArrayList<>();
@@ -16,15 +16,15 @@ public class PluginHost implements Pipe {
 	public PluginHost() {
 	}
 
-	public PluginHost(String name, PluginBehaviour behaviour) {
+	public PluginHost(String name, Behaviour behaviour) {
 		this.setBehaviour(behaviour);
 	}
 
-	private void setBehaviour(PluginBehaviour behaviour) {
+	private void setBehaviour(Behaviour behaviour) {
 		this.behaviour = behaviour;
 	}
 
-	private PluginBehaviour getBehaviour() {
+	private Behaviour getBehaviour() {
 		return this.behaviour;
 	}
 

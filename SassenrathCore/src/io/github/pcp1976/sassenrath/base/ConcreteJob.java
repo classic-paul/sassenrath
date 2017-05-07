@@ -1,4 +1,4 @@
-package io.gihub.pcp1976.sassenrath.base;
+package io.github.pcp1976.sassenrath.base;
 
 import java.nio.file.Path;
 

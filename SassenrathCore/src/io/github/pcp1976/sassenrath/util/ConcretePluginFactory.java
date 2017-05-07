@@ -1,9 +1,9 @@
 package io.github.pcp1976.sassenrath.util;
 
 import io.github.pcp1976.sassenrath.api.extend.Plugin;
-import io.github.pcp1976.sassenrath.api.extend.PluginBehaviour;
+import io.github.pcp1976.sassenrath.api.extend.Behaviour;
 
-public class ConcretePluginFactory<B extends PluginBehaviour> {
+public class ConcretePluginFactory<B extends Behaviour> {
 	final Class<B> behaviourClass;
 	final String name;
 
@@ -18,7 +18,7 @@ public class ConcretePluginFactory<B extends PluginBehaviour> {
 		return p;
 	}
 
-	public static <B extends PluginBehaviour> ConcretePluginFactory<B> createFactory(final Class<B> behaviourClass, String name) {
+	public static <B extends Behaviour> ConcretePluginFactory<B> createFactory(final Class<B> behaviourClass, String name) {
 		return new ConcretePluginFactory<B>(behaviourClass, name);
 	}
 	
