@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.gihub.pcp1976.sassenrath.base.ConcreteJob;
-import io.github.pcp1976.sassenrath.api.extend.Job;
-import io.github.pcp1976.sassenrath.api.extend.Plugin;
-import io.github.pcp1976.sassenrath.api.extend.PluginBehaviour;
+import io.github.pcp1976.sassenrath.api.extend.*;
 
-public class PluginHost implements Plugin {
+public class PluginHost implements Pipe {
 	private PluginBehaviour behaviour;
 	private List<Job> jobList = new ArrayList<>();
-	private List<Plugin> isServerFor = new ArrayList<>();
-	private List<Plugin> isClientOf = new ArrayList<>();
+	private List<Source> isSinkOf = new ArrayList<>();
+	private List<Sink> isSourceFor = new ArrayList<>();
 	String name;
 	
 	public PluginHost() {
@@ -43,64 +41,10 @@ public class PluginHost implements Plugin {
 	}
 
 	@Override
-	public List<Plugin> getIsServerFor() {
-		return this.isServerFor;
-	}
-
-	@Override
-	public void setIsServerFor(List<Plugin> isServerFor) {
-
-		this.isServerFor = isServerFor;
-
-	}
-
-	@Override
-	public List<Plugin> getIsClientOf() {
-		return this.isClientOf;
-	}
-
-	@Override
-	public void setIsClientOf(List<Plugin> isClientOf) {
-
-		this.isClientOf = isClientOf;
-
-	}
-
-	@Override
-	public void addClient(Plugin client) {
-
-		getIsServerFor().add(client);
-
-	}
-
-	@Override
-	public void addServer(Plugin server) {
-
-		this.getIsClientOf().add(server);
-
-	}
-
-	@Override
-	public boolean isInClients(Plugin client) {
-
-		boolean returnboolean = this.getIsServerFor().contains(client);
-
-		return returnboolean;
-	}
-
-	@Override
-	public boolean isInServers(Plugin server) {
-
-		boolean returnboolean = this.isInServers(server);
-
-		return returnboolean;
-	}
-
-	@Override
 	public void updateJobs() {
 
 		this.setJobList(null);
-		for (Plugin server : this.getIsClientOf()) {
+		for (Source server : this.getIsSinkOf()) {
 			for (Job serverJob : server.getJobList()) {
 				Job newJob = new ConcreteJob();
 				newJob.setInputFilePath(serverJob.getOutputFilePath());
@@ -112,7 +56,7 @@ public class PluginHost implements Plugin {
 			}
 
 		}
-		for (Plugin client : this.getIsServerFor()) {
+		for (Plugin client : this.getIsSourceFor()) {
 			client.updateJobs();
 
 		}
@@ -132,6 +76,46 @@ public class PluginHost implements Plugin {
 	@Override
 	public void configure() {
 		this.getBehaviour().configure();
+	}
+
+	@Override
+	public List<Source> getIsSinkOf() {
+		return this.isSinkOf;
+	}
+
+	@Override
+	public void setIsSinkOf(List<Source> isSinkOf) {
+		this.isSinkOf = isSinkOf;
+	}
+
+	@Override
+	public void addSource(Source source) {
+		this.getIsSinkOf().add(source);
+	}
+
+	@Override
+	public boolean isInSources(Source source) {
+		return this.getIsSinkOf().contains(source);
+	}
+
+	@Override
+	public List<Sink> getIsSourceFor() {
+		return this.isSourceFor;
+	}
+
+	@Override
+	public void setIsSourceFor(List<Sink> isSourceFor) {
+		this.isSourceFor = isSourceFor;
+	}
+
+	@Override
+	public void addSink(Sink sink) {
+		this.getIsSourceFor().add(sink);
+	}
+
+	@Override
+	public boolean isInSinks(Sink sink) {
+		return this.getIsSourceFor().contains(sink);
 	}
 
 }
