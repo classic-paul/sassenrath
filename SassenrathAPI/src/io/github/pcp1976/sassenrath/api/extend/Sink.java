@@ -7,4 +7,5 @@ public interface Sink extends Plugin {
 	public void setIsSinkOf(List<Source> isSourceOf);
 	public void addSource(Source source);
 	public boolean isInSources(Source source);
+
 }

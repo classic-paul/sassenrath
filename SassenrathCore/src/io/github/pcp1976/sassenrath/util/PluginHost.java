@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.pcp1976.sassenrath.api.extend.*;
-import io.github.pcp1976.sassenrath.base.ConcreteJob;
+import io.github.pcp1976.sassenrath.core.ConcreteJob;
 
 public class PluginHost implements Pipe {
 	private Behaviour behaviour;
@@ -116,6 +116,22 @@ public class PluginHost implements Pipe {
 	@Override
 	public boolean isInSinks(Sink sink) {
 		return this.getIsSourceFor().contains(sink);
+	}
+
+	@Override
+	public boolean cycleCheck(Pipe pipe) {
+		if(isInSources(pipe)){
+			return false; //fail early, we're attempting to add source to its own sources!
+		}
+		for(Source s : this.getIsSinkOf()){
+				if(s instanceof Pipe){ //if the source has sources of its own
+					if(((Pipe) s).isInSources(pipe)){
+						return false; // fail if we find a match in amongst our source's sources
+					}
+				}
+			}
+		
+		return true; // if we made it here, no match was found
 	}
 
 }
