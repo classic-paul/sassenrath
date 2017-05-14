@@ -14,6 +14,7 @@ public class ControlerImpl implements Controller {
 	private static final Logger logger = LoggerFactory.getLogger(ControlerImpl.class);
 	public List<Plugin> pluginGraph;
 
+	@Override
 	public boolean addSource(Plugin sink, Plugin source) {
 		log("addSource(Sink, Source) - start");
 		if(!this.checkForCycles(source, sink)){
@@ -31,6 +32,7 @@ public class ControlerImpl implements Controller {
 		return false;
 	}
 
+	@Override
 	public boolean addSink(Plugin source, Plugin sink) {
 		log("addSink(Source, Sink) - start");
 		if(!this.checkForCycles(source, sink)){
@@ -59,7 +61,8 @@ public class ControlerImpl implements Controller {
 		}
 		return false;
 	}
-		
+
+	@Override
 	public boolean linkSourceAndSink(Plugin source, Plugin sink){
 		return this.addSink(source, sink) && this.addSource(sink, source);
 	}
