@@ -89,8 +89,8 @@ public class PluginHost implements Pipe {
 	}
 
 	@Override
-	public void addSource(Source source) {
-		this.getIsSinkOf().add(source);
+	public boolean addSource(Source source) {
+		return this.getIsSinkOf().add(source);
 	}
 
 	@Override
@@ -109,8 +109,8 @@ public class PluginHost implements Pipe {
 	}
 
 	@Override
-	public void addSink(Sink sink) {
-		this.getIsSourceFor().add(sink);
+	public boolean addSink(Sink sink) {
+		return this.getIsSourceFor().add(sink);
 	}
 
 	@Override

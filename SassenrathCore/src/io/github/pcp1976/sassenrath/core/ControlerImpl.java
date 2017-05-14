@@ -16,14 +16,15 @@ public class ControlerImpl implements Controller {
 
 	public boolean addSource(Plugin sink, Plugin source) {
 		log("addSource(Sink, Source) - start");
+		if(!this.checkForCycles(source, sink)){
+			return false;
+		}
 		if (source instanceof Source && sink instanceof Sink) {
-			//we should perform a check for cycles here
 			log("addSink(Source, Sink) - argument type guard passed");
 			Source so = (Source) source;
 			Sink si = (Sink) sink;
-			si.addSource(so);
 			log("addSource(Plugin, Plugin) - end; source added to sink");
-			return true;
+			return si.addSource(so);
 		}
 
 		log("addSource(Plugin, Plugin) - end; source not added to sink");
@@ -32,6 +33,9 @@ public class ControlerImpl implements Controller {
 
 	public boolean addSink(Plugin source, Plugin sink) {
 		log("addSink(Source, Sink) - start");
+		if(!this.checkForCycles(source, sink)){
+			return false;
+		}
 		if (source instanceof Source && sink instanceof Sink) {
 			// need a cycle check
 			log("addSink(Source, Sink) - argument type guard passed");
@@ -47,14 +51,19 @@ public class ControlerImpl implements Controller {
 		return false;
 	}
 	
-	
-/*	
-	public boolean linkSourceAndSink(Plugin source, Plugin sink){
-		if (source instanceof Source && sink instanceof Sink) {
-			
+	private boolean checkForCycles(Plugin source, Plugin sink){
+		if (sink instanceof Pipe && source instanceof Pipe){
+			Pipe so = (Pipe) source;
+			Pipe si = (Pipe) sink;
+			return so.cycleCheck(si);
 		}
+		return false;
 	}
-*/
+		
+	public boolean linkSourceAndSink(Plugin source, Plugin sink){
+		return this.addSink(source, sink) && this.addSource(sink, source);
+	}
+	
 	private void log(String message) {
 		if (logger.isDebugEnabled()) {
 			logger.debug(message);
