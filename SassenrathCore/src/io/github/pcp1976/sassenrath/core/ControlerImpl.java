@@ -39,13 +39,11 @@ public class ControlerImpl implements Controller {
 			return false;
 		}
 		if (source instanceof Source && sink instanceof Sink) {
-			// need a cycle check
 			log("addSink(Source, Sink) - argument type guard passed");
 			Source so = (Source) source;
 			Sink si = (Sink) sink;
-			so.addSink(si);
 			log("addSink(Plugin, Plugin) - end; sink added to source");
-			return true;
+			return so.addSink(si);
 		}
 
 		log("addSink(Source, Sink) - end; sink not added to source");
