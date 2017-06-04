@@ -1,4 +1,4 @@
-package io.github.pcp1976.sassenrath.api.core;
+package io.github.pcp1976.sassenrath.api;
 
 import io.github.pcp1976.sassenrath.api.extend.Plugin;
 

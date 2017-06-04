@@ -4,7 +4,8 @@ package io.github.pcp1976.sassenrath.pluginempty;
 import org.osgi.service.component.annotations.Component;
 
 import io.github.pcp1976.sassenrath.api.extend.*;
-import io.github.pcp1976.sassenrath.util.*;
+import io.github.pcp1976.sassenrath.util.ConcretePluginFactory;
+import io.github.pcp1976.sassenrath.util.PluginHost;
 @Component
 public class PluginEmpty extends PluginHost implements Factory {
 	private final String name = "Empty"; 

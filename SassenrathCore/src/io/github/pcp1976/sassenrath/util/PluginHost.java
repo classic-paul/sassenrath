@@ -42,8 +42,7 @@ public class PluginHost implements Pipe {
 
 	@Override
 	public void updateJobs() {
-
-		this.setJobList(null);
+		this.setJobList(null); //perhaps don't need to clear completely? Need to consider this carefully
 		for (Source server : this.getIsSinkOf()) {
 			for (Job serverJob : server.getJobList()) {
 				Job newJob = new ConcreteJob();
@@ -125,7 +124,7 @@ public class PluginHost implements Pipe {
 		}
 		for(Source s : this.getIsSinkOf()){
 				if(s instanceof Pipe){ //if the source has sources of its own
-					if(((Pipe) s).isInSources(pipe)){
+					if(!((Pipe) s).cycleCheck(pipe)){
 						return false; // fail if we find a match in amongst our source's sources
 					}
 				}
