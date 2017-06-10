@@ -42,7 +42,8 @@ public class PluginHost implements Pipe {
 
 	@Override
 	public void updateJobs() {
-		this.setJobList(null); //perhaps don't need to clear completely? Need to consider this carefully
+		//TODO perhaps don't need to clear completely? Need to consider this carefully
+		this.setJobList(null);
 		for (Source server : this.getIsSinkOf()) {
 			for (Job serverJob : server.getJobList()) {
 				Job newJob = new ConcreteJob();
@@ -55,8 +56,8 @@ public class PluginHost implements Pipe {
 			}
 
 		}
-		for (Plugin client : this.getIsSourceFor()) {
-			client.updateJobs();
+		for (Plugin sink : this.getIsSourceFor()) {
+			sink.updateJobs();
 
 		}
 

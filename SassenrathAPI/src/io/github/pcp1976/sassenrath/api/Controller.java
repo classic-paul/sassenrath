@@ -6,4 +6,6 @@ public interface Controller {
 	public boolean linkSourceAndSink(Plugin source, Plugin sink);
 	public void beginWork();
 	public boolean addPlugin(Plugin plugin);
+	public boolean removePlugin(Plugin plugin);
+	public void configurePlugin(Plugin plugin);
 }

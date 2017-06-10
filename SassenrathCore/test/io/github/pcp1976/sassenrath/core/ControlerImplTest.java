@@ -19,7 +19,7 @@ public class ControlerImplTest {
 	static Pipe p3;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "TRACE");
+		System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "DEBUG");
 		controller = new ControllerImpl();
 	}
 
@@ -31,7 +31,7 @@ public class ControlerImplTest {
 	@Before
 	public void setUp() throws Exception {
 		PluginEmpty p = new PluginEmpty();
-		p1 = (Pipe) p.buildPlugin(); //we know this is a pipe - in reality we'd have to check
+		p1 = (Pipe) p.buildPlugin(); //we know these are pipes - in reality we'd have to check
 		p2 = (Pipe) p.buildPlugin();
 		p3 = (Pipe) p.buildPlugin();
 	}
