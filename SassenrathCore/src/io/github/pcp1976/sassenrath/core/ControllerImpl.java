@@ -11,10 +11,9 @@ import java.util.List;
 @Component
 public class ControllerImpl implements Controller {
 	private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
-	public List<Plugin> pluginGraph;
+	private List<Plugin> pluginGraph;
 
-	@Override
-	public boolean addSource(Plugin sink, Plugin source) {
+	private boolean addSource(Plugin sink, Plugin source) {
 		log("addSource(Sink, Source) - start");
 		if (!this.checkForCycles(source, sink)) {
 			return false;
@@ -31,8 +30,7 @@ public class ControllerImpl implements Controller {
 		return false;
 	}
 
-	@Override
-	public boolean addSink(Plugin source, Plugin sink) {
+	private boolean addSink(Plugin source, Plugin sink) {
 		log("addSink(Source, Sink) - start");
 		if (!this.checkForCycles(source, sink)) {
 			return false;
@@ -68,5 +66,25 @@ public class ControllerImpl implements Controller {
 		if (logger.isDebugEnabled()) {
 			logger.debug(message);
 		}
+	}
+
+	@Override
+	public void beginWork() {
+		if (logger.isErrorEnabled()) {
+			logger.debug("beginWork() called: this method is not yet implemented");
+		}
+	}
+
+	@Override
+	public boolean addPlugin(Plugin plugin) {
+		return this.getPluginGraph().add(plugin);
+	}
+
+	public List<Plugin> getPluginGraph() {
+		return pluginGraph;
+	}
+
+	public void setPluginGraph(List<Plugin> pluginGraph) {
+		this.pluginGraph = pluginGraph;
 	}
 }

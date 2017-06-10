@@ -19,6 +19,7 @@ public class ControlerImplTest {
 	static Pipe p3;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "TRACE");
 		controller = new ControllerImpl();
 	}
 
@@ -43,17 +44,11 @@ public class ControlerImplTest {
 	}
 
 	@Test
-	public void testAddSink() {
-		// let's simply add p2 as a sink to p1
-		assertTrue(controller.addSink(p1, p2));
-	}
-	
-	@Test
 	public void testAddCycle(){
 		// here we want to check that we can't add cyclic dependencies
-		assertTrue(controller.addSink(p1, p2)); // this should be fine
-		assertTrue(controller.addSink(p2, p3)); // this should also be fine
-		assertFalse(controller.addSink(p3, p1)); // here there is a cycle - not fine
+		assertTrue(controller.linkSourceAndSink(p1, p2)); // this should be fine
+		assertTrue(controller.linkSourceAndSink(p2, p3)); // this should also be fine
+		assertFalse(controller.linkSourceAndSink(p3, p1)); // here there is a cycle - not fine
 	} 
 
 }
