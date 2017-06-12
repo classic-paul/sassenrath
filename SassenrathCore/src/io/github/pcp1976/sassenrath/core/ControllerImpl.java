@@ -112,13 +112,15 @@ public class ControllerImpl implements Controller {
 		return returnboolean;
 	}
 
+	@Override
 	public List<Plugin> getPluginGraph() {
 		logger.debug("getPluginGraph() - start");
 		logger.info("getPluginGraph() - List<Plugin> pluginGraph={}", pluginGraph);
 		logger.debug("getPluginGraph() - end");
 		return pluginGraph;
 	}
-
+	
+	@Override
 	public void setPluginGraph(List<Plugin> pluginGraph) {
 		logger.debug("setPluginGraph(List<Plugin>) - start");
 		this.pluginGraph = pluginGraph;

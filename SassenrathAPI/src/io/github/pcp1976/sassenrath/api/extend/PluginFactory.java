@@ -1,6 +1,6 @@
 package io.github.pcp1976.sassenrath.api.extend;
 
-public interface Factory {
+public interface PluginFactory {
 	public Plugin buildPlugin();
 	public String getName();
 }

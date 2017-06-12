@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.osgi.service.component.annotations.Component;
 import io.github.pcp1976.sassenrath.api.extend.*;
 import io.github.pcp1976.sassenrath.util.ConcretePluginFactory;
-import io.github.pcp1976.sassenrath.util.PluginHost;
+import io.github.pcp1976.sassenrath.util.PipeHost;
 
 @Component
-public class PluginEmpty extends PluginHost implements Factory {
+public class PluginEmpty extends PipeHost implements PluginFactory {
 	private static final Logger logger = LoggerFactory.getLogger(PluginEmpty.class);
 	private final String name = "Empty"; 
 

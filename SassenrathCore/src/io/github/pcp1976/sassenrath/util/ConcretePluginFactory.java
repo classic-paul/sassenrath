@@ -3,6 +3,7 @@ package io.github.pcp1976.sassenrath.util;
 import io.github.pcp1976.sassenrath.api.extend.Plugin;
 import io.github.pcp1976.sassenrath.api.extend.Behaviour;
 
+//TODO this should be an inner class of PluginHost
 public class ConcretePluginFactory<B extends Behaviour> {
 	final Class<B> behaviourClass;
 	final String name;
@@ -13,7 +14,7 @@ public class ConcretePluginFactory<B extends Behaviour> {
 	}
 
 	public Plugin create() throws InstantiationException, IllegalAccessException {
-		Plugin p = new PluginHost(name, behaviourClass.newInstance());
+		Plugin p = new PipeHost(name, behaviourClass.newInstance());
 		p.setName(name);
 		return p;
 	}

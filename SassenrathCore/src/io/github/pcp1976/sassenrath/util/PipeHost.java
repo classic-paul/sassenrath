@@ -6,17 +6,17 @@ import java.util.List;
 import io.github.pcp1976.sassenrath.api.extend.*;
 import io.github.pcp1976.sassenrath.core.ConcreteJob;
 
-public class PluginHost implements Pipe {
+public class PipeHost implements Pipe {
 	private Behaviour behaviour;
 	private List<Job> jobList = new ArrayList<>();
 	private List<Source> isSinkOf = new ArrayList<>();
 	private List<Sink> isSourceFor = new ArrayList<>();
 	String name;
 	
-	public PluginHost() {
+	public PipeHost() {
 	}
 
-	public PluginHost(String name, Behaviour behaviour) {
+	public PipeHost(String name, Behaviour behaviour) {
 		this.setBehaviour(behaviour);
 	}
 
