@@ -16,15 +16,14 @@ public class PluginEmpty extends PipeHost implements PluginFactory {
 	public Plugin buildPlugin() {
 		logger.debug("buildPlugin() - start");
 		Plugin p = null;
-		logger.info("buildPlugin() - Plugin p={}", p);
 		try {
 			p = ConcretePluginFactory.createFactory(BehaviourEmpty.class, this.getName()).create();
-			logger.info("buildPlugin() - Plugin p={}", p);	
 		} catch (Exception e) {
-			logger.error("buildPlugin() - exception ignored", e);
-		}
+			logger.error("buildPlugin() - exception ignored: ", e);
+		}finally{
 		logger.info("buildPlugin() - Plugin p={}", p);
 		logger.debug("buildPlugin() - end");
+		}
 		return p;
 	}
 	

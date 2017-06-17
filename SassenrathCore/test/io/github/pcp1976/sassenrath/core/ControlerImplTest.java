@@ -9,14 +9,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import io.github.pcp1976.sassenrath.api.Controller;
-import io.github.pcp1976.sassenrath.api.extend.Pipe;
+import io.github.pcp1976.sassenrath.api.extend.*;
 import io.github.pcp1976.sassenrath.pluginempty.PluginEmpty;
 
 public class ControlerImplTest {
 	static Controller controller;
-	static Pipe p1;
-	static Pipe p2;
-	static Pipe p3;
+	static Plugin p1;
+	static Plugin p2;
+	static Plugin p3;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "DEBUG");
@@ -31,9 +31,10 @@ public class ControlerImplTest {
 	@Before
 	public void setUp() throws Exception {
 		PluginEmpty p = new PluginEmpty();
-		p1 = (Pipe) p.buildPlugin(); //we know these are pipes - in reality we'd have to check
-		p2 = (Pipe) p.buildPlugin();
-		p3 = (Pipe) p.buildPlugin();
+		p1 = p.buildPlugin();
+		p2 = p.buildPlugin();
+		p3 = p.buildPlugin();
+		assertTrue(p1 instanceof Pipe && p2 instanceof Pipe && p3 instanceof Pipe);
 	}
 
 	@After

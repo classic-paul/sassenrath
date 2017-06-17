@@ -3,7 +3,6 @@ package io.github.pcp1976.sassenrath.util;
 import io.github.pcp1976.sassenrath.api.extend.Plugin;
 import io.github.pcp1976.sassenrath.api.extend.Behaviour;
 
-//TODO this should be an inner class of PluginHost
 public class ConcretePluginFactory<B extends Behaviour> {
 	final Class<B> behaviourClass;
 	final String name;
