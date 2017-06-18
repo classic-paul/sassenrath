@@ -7,6 +7,8 @@ import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
+import org.graphstream.ui.spriteManager.*;
+
 @Component
 public class Example implements ViewerListener {
 	protected boolean loop = true;
@@ -19,22 +21,36 @@ public class Example implements ViewerListener {
 		// connect the graph outputs to the viewer.
 		// The viewer is a sink of the graph.
 		Graph graph = new SingleGraph("Clicks");
+		SpriteManager sman = new SpriteManager(graph);
+		
+		//TODO stylesheet for sprites
+		//TODO when implementing, a class which extends node and adds the necessary buttons would be a good idea
+		
+		Sprite s = sman.addSprite("S");
+		Sprite t = sman.addSprite("T");
+		Sprite u = sman.addSprite("U");
+		
 		Viewer viewer = graph.display();
 
-		Node a = graph.addNode("A" );
-		Node b = graph.addNode("B" );
-		Node c = graph.addNode("C" );
+		Node a = graph.addNode("A");
+	    s.attachToNode("A");
+	    
+		Node b = graph.addNode("B");
+	    t.attachToNode("B");
+	    
+		Node c = graph.addNode("C");
+	    u.attachToNode("C");
 		
 		a.addAttribute("ui.label", a.getId());
 		b.addAttribute("ui.label", b.getId());
 		c.addAttribute("ui.label", c.getId());
 		
-		graph.addEdge("AB", "A", "B");
+		graph.addEdge("AB", "A", "B", true);
 		graph.addEdge("BC", "B", "C");
-		graph.addEdge("CA", "C", "A");
+		graph.addEdge("CA", "A", "C", true);
 		// The default action when closing the view is to quit
 		// the program.
-		viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+		//viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
 
 		// We connect back the viewer to the graph,
 		// the graph becomes a sink for the viewer.
