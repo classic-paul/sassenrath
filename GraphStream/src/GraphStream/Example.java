@@ -24,7 +24,7 @@ public class Example implements ViewerListener {
 		SpriteManager sman = new SpriteManager(graph);
 		
 		//TODO stylesheet for sprites
-		//TODO when implementing, a class which extends node and adds the necessary buttons would be a good idea
+		//TODO when implementing, a factory which adds necessary attributes to nodes would be a good idea
 		
 		Sprite s = sman.addSprite("S");
 		Sprite t = sman.addSprite("T");
