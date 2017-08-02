@@ -16,32 +16,34 @@ public class Example implements ViewerListener {
 	public static void main(String args[]) {
 		new Example();
 	}
+
 	public Example() {
 		Graph graph = new SingleGraph("Clicks");
 		SpriteManager sman = new SpriteManager(graph);
-		
-		//TODO stylesheet for sprites
-		//TODO when implementing, a factory which adds necessary attributes to nodes would be a good idea
-		
+
+		// TODO stylesheet for sprites
+		// TODO when implementing, a factory which adds necessary attributes to
+		// nodes would be a good idea
+
 		Sprite s = sman.addSprite("S");
 		Sprite t = sman.addSprite("T");
 		Sprite u = sman.addSprite("U");
-		
+
 		Viewer viewer = graph.display();
 
 		Node a = graph.addNode("A");
-	    s.attachToNode("A");
-	    
+		s.attachToNode("A");
+
 		Node b = graph.addNode("B");
-	    t.attachToNode("B");
-	    
+		t.attachToNode("B");
+
 		Node c = graph.addNode("C");
-	    u.attachToNode("C");
-		
+		u.attachToNode("C");
+
 		a.addAttribute("ui.label", a.getId());
 		b.addAttribute("ui.label", b.getId());
 		c.addAttribute("ui.label", c.getId());
-		
+
 		graph.addEdge("AB", "A", "B", true);
 		graph.addEdge("BC", "B", "C");
 		graph.addEdge("CA", "A", "C", true);
@@ -49,9 +51,15 @@ public class Example implements ViewerListener {
 		fromViewer.addViewerListener(this);
 		fromViewer.addSink(graph);
 
-		while(loop) {
-			fromViewer.pump(); // or fromViewer.blockingPump(); in the nightly builds
+		while (loop) {
+			try {
+				fromViewer.blockingPump(); // or fromViewer.blockingPump(); in
+											// the nightly builds
+			} catch (Exception e) {
+				System.out.print(e.toString());
 			}
+
+		}
 	}
 
 	public void viewClosed(String id) {
@@ -59,12 +67,10 @@ public class Example implements ViewerListener {
 	}
 
 	public void buttonPushed(String id) {
-		System.out.println("Button pushed on node "+id);
+		System.out.println("Button pushed on node " + id);
 	}
 
 	public void buttonReleased(String id) {
-		System.out.println("Button released on node "+id);
+		System.out.println("Button released on node " + id);
 	}
 }
-
-

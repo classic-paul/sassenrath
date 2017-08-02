@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <interface id="1" language="java" name="io.github.pcp1976.sassenrath.api.extend.Sink" project="SassenrathAPI" 
+    file="/SassenrathAPI/src/io/github/pcp1976/sassenrath/api/extend/Sink.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="178" x="868" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="2" language="java" name="io.github.pcp1976.sassenrath.api.extend.PluginFactory" project="SassenrathAPI" 
+    file="/SassenrathAPI/src/io/github/pcp1976/sassenrath/api/extend/PluginFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="178" x="324" y="211"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="3" language="java" name="io.github.pcp1976.sassenrath.api.extend.Pipe" project="SassenrathAPI" 
+    file="/SassenrathAPI/src/io/github/pcp1976/sassenrath/api/extend/Pipe.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="178" x="977" y="633"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="4" language="java" name="io.github.pcp1976.sassenrath.api.extend.Source" project="SassenrathAPI" 
+    file="/SassenrathAPI/src/io/github/pcp1976/sassenrath/api/extend/Source.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="180" x="1086" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="5" language="java" name="io.github.pcp1976.sassenrath.api.extend.Behaviour" project="SassenrathAPI" 
+    file="/SassenrathAPI/src/io/github/pcp1976/sassenrath/api/extend/Behaviour.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="178" x="542" y="211"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="6" language="java" name="io.github.pcp1976.sassenrath.api.extend.Job" project="SassenrathAPI" 
+    file="/SassenrathAPI/src/io/github/pcp1976/sassenrath/api/extend/Job.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="178" x="760" y="211"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="7" language="java" name="io.github.pcp1976.sassenrath.api.extend.Plugin" project="SassenrathAPI" 
+    file="/SassenrathAPI/src/io/github/pcp1976/sassenrath/api/extend/Plugin.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="178" x="978" y="211"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="8" language="java" name="io.github.pcp1976.sassenrath.api.extend.View" project="SassenrathAPI" 
+    file="/SassenrathAPI/src/io/github/pcp1976/sassenrath/api/extend/View.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="63" width="178" x="1196" y="211"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <generalization id="9">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="10">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
