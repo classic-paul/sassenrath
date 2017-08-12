@@ -2,6 +2,7 @@ package GraphStream;
 
 import org.osgi.service.component.annotations.*;
 
+import java.awt.EventQueue;
 import java.util.concurrent.Executors;
 
 import org.graphstream.graph.Graph;
@@ -20,28 +21,29 @@ public class Example implements ViewerListener {
 	protected View view;
 	protected Graph graph;
 	protected ViewerPipe fromViewer;
+
 	public static void main(String args[]) {
 		new Example();
 	}
 
 	public Example() {
-
+		//System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
 		// TODO stylesheet for sprites
 		// TODO when implementing, a factory which adds necessary attributes to
 		// nodes would be a good idea
 		graph = new SingleGraph("Clicks");
 		graph.addAttribute("ui.quality");
 		graph.addAttribute("ui.antialias");
-		
+
 		SpriteManager sman = new SpriteManager(graph);
 
-		viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
+		viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
 		view = viewer.addDefaultView(false);
 		fromViewer = viewer.newViewerPipe();
 		fromViewer.addViewerListener(this);
 		fromViewer.addSink(graph);
 		viewer.enableAutoLayout();
-	
+
 		Sprite s = sman.addSprite("S");
 		Sprite t = sman.addSprite("T");
 		Sprite u = sman.addSprite("U");
@@ -59,29 +61,29 @@ public class Example implements ViewerListener {
 		graph.addEdge("BC", "B", "C");
 		graph.addEdge("CA", "A", "C", true);
 
-		
-		
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
-			@Override
-			public void run() {
-				while (loop) {
-					try {
-						fromViewer.blockingPump();
-					} catch (Exception e) {
-						System.out.print(e.toString());
+		    @Override 
+		    public void run() {
+				try {
+					while (loop) {
+						view.requestFocus();
+						fromViewer.pump();
 					}
+				} catch (Exception e) {
+					System.out.print(e.toString());
 				}
 			}
-		});
-		
-		new Thread( new Runnable() {
-		    @Override
-		    public void run() {
 
-		    }
-		}).start();
+		});
 	}
 
+	/*
+	 * new Thread(new Runnable() {
+	 * 
+	 * @Override public void run() {
+	 * 
+	 * } }).start(); }
+	 */
 	public void viewClosed(String id) {
 		loop = false;
 	}

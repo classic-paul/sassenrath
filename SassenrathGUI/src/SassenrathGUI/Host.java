@@ -12,12 +12,15 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+import javax.swing.JPanel;
 
 @Component
 public class Host {
@@ -103,15 +106,21 @@ public class Host {
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
 		
-		JSplitPane splitPane = new JSplitPane();
+		Example w = new Example();
+		frmSassenrath.getContentPane().add((java.awt.Component) w.getView(), BorderLayout.CENTER);
+
+		/*
+		JFrame splitPane = new JFrame();
 		frmSassenrath.getContentPane().add(splitPane, BorderLayout.CENTER);
 		Example w = new Example();
 		
-		splitPane.setRightComponent((java.awt.Component) w.getView());
+		splitPane.getContentPane().add((java.awt.Component) w.getView());
 		
-		textField = new JTextField();
-		splitPane.setLeftComponent(textField);
-		textField.setColumns(10);
+		//textField = new JTextField();
+		//splitPane.setLeftComponent(textField);
+		//textField.setColumns(10);
+		 * 
+		 */
 	}
 
 }
