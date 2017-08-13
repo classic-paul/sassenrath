@@ -12,6 +12,11 @@ import org.graphstream.ui.view.View;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
+import org.graphstream.ui.layout.HierarchicalLayout;
+import org.graphstream.ui.layout.Layout;
+import org.graphstream.ui.layout.springbox.BarnesHutLayout;
+import org.graphstream.ui.layout.springbox.implementations.LinLog;
+import org.graphstream.ui.layout.springbox.implementations.SpringBox;
 import org.graphstream.ui.spriteManager.*;
 
 @Component
@@ -34,7 +39,8 @@ public class Example implements ViewerListener {
 		graph = new SingleGraph("Clicks");
 		graph.addAttribute("ui.quality");
 		graph.addAttribute("ui.antialias");
-
+		//HierarchicalLayout hl = new HierarchicalLayout();
+		//hl.setQuality(1);
 		SpriteManager sman = new SpriteManager(graph);
 
 		viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
@@ -42,11 +48,13 @@ public class Example implements ViewerListener {
 		fromViewer = viewer.newViewerPipe();
 		fromViewer.addViewerListener(this);
 		fromViewer.addSink(graph);
+		//viewer.enableAutoLayout(hl);
 		viewer.enableAutoLayout();
 
 		Sprite s = sman.addSprite("S");
 		Sprite t = sman.addSprite("T");
 		Sprite u = sman.addSprite("U");
+		
 		Node a = graph.addNode("A");
 		s.attachToNode("A");
 		Node b = graph.addNode("B");
@@ -56,10 +64,19 @@ public class Example implements ViewerListener {
 		a.addAttribute("ui.label", a.getId());
 		b.addAttribute("ui.label", b.getId());
 		c.addAttribute("ui.label", c.getId());
+		Node d = graph.addNode("D");
+		Node e = graph.addNode("E");
+		Node f = graph.addNode("F");
+		d.addAttribute("ui.label", d.getId());
+		e.addAttribute("ui.label", e.getId());
+		f.addAttribute("ui.label", f.getId());
 
 		graph.addEdge("AB", "A", "B", true);
-		graph.addEdge("BC", "B", "C");
+		//graph.addEdge("BC", "B", "C");
 		graph.addEdge("CA", "A", "C", true);
+		graph.addEdge("BD", "B", "D", true);
+		graph.addEdge("BE", "B", "E", true);
+		graph.addEdge("EF", "E", "F", true);
 
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
 		    @Override 
@@ -67,7 +84,7 @@ public class Example implements ViewerListener {
 				try {
 					while (loop) {
 						view.requestFocus();
-						fromViewer.pump();
+						fromViewer.blockingPump();
 					}
 				} catch (Exception e) {
 					System.out.print(e.toString());
