@@ -2,9 +2,12 @@ package GraphStream;
 
 import org.osgi.service.component.annotations.*;
 
-import java.awt.EventQueue;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executors;
 
+import org.graphstream.algorithm.Toolkit;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.*;
@@ -12,12 +15,6 @@ import org.graphstream.ui.view.View;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
-import org.graphstream.ui.layout.HierarchicalLayout;
-import org.graphstream.ui.layout.Layout;
-import org.graphstream.ui.layout.springbox.BarnesHutLayout;
-import org.graphstream.ui.layout.springbox.implementations.LinLog;
-import org.graphstream.ui.layout.springbox.implementations.SpringBox;
-import org.graphstream.ui.spriteManager.*;
 
 @Component
 public class Example implements ViewerListener {
@@ -26,61 +23,54 @@ public class Example implements ViewerListener {
 	protected View view;
 	protected Graph graph;
 	protected ViewerPipe fromViewer;
+	Map<String, double[]> positions = new HashMap<String, double[]>();
 
 	public static void main(String args[]) {
 		new Example();
 	}
 
+	// TODO style sheet for nodes
+	// TODO when implementing, a factory which adds necessary attributes to
+	// nodes would be a good idea
 	public Example() {
-		//System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
-		// TODO stylesheet for sprites
-		// TODO when implementing, a factory which adds necessary attributes to
-		// nodes would be a good idea
+		System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+
 		graph = new SingleGraph("Clicks");
 		graph.addAttribute("ui.quality");
 		graph.addAttribute("ui.antialias");
-		//HierarchicalLayout hl = new HierarchicalLayout();
-		//hl.setQuality(1);
-		SpriteManager sman = new SpriteManager(graph);
+		graph.addAttribute("ui.stylesheet",
+				"node {size-mode: fit; shape: box; fill-color: white; padding: 3; stroke-color: black; stroke-mode: plain;} node:selected {fill-color: red;}");
 
 		viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
 		view = viewer.addDefaultView(false);
 		fromViewer = viewer.newViewerPipe();
 		fromViewer.addViewerListener(this);
 		fromViewer.addSink(graph);
-		//viewer.enableAutoLayout(hl);
 		viewer.enableAutoLayout();
 
-		Sprite s = sman.addSprite("S");
-		Sprite t = sman.addSprite("T");
-		Sprite u = sman.addSprite("U");
-		
 		Node a = graph.addNode("A");
-		s.attachToNode("A");
 		Node b = graph.addNode("B");
-		t.attachToNode("B");
 		Node c = graph.addNode("C");
-		u.attachToNode("C");
-		a.addAttribute("ui.label", a.getId());
-		b.addAttribute("ui.label", b.getId());
-		c.addAttribute("ui.label", c.getId());
 		Node d = graph.addNode("D");
 		Node e = graph.addNode("E");
 		Node f = graph.addNode("F");
+
+		a.addAttribute("ui.label", a.getId());
+		b.addAttribute("ui.label", b.getId());
+		c.addAttribute("ui.label", c.getId());
 		d.addAttribute("ui.label", d.getId());
 		e.addAttribute("ui.label", e.getId());
 		f.addAttribute("ui.label", f.getId());
 
 		graph.addEdge("AB", "A", "B", true);
-		//graph.addEdge("BC", "B", "C");
 		graph.addEdge("CA", "A", "C", true);
 		graph.addEdge("BD", "B", "D", true);
 		graph.addEdge("BE", "B", "E", true);
 		graph.addEdge("EF", "E", "F", true);
 
 		Executors.newSingleThreadExecutor().execute(new Runnable() {
-		    @Override 
-		    public void run() {
+			@Override
+			public void run() {
 				try {
 					while (loop) {
 						view.requestFocus();
@@ -94,23 +84,27 @@ public class Example implements ViewerListener {
 		});
 	}
 
-	/*
-	 * new Thread(new Runnable() {
-	 * 
-	 * @Override public void run() {
-	 * 
-	 * } }).start(); }
-	 */
 	public void viewClosed(String id) {
 		loop = false;
 	}
 
 	public void buttonPushed(String id) {
-		System.out.println("Button pushed on node " + id);
+		positions.put(id, Toolkit.nodePosition(graph, id));
 	}
 
 	public void buttonReleased(String id) {
-		System.out.println("Button released on node " + id);
+		if (hasNotMoved(id)) {
+			System.out.println("Node was clicked " + id);
+		} else {
+			System.out.println("Node was moved " + id);
+		}
+	}
+
+	private boolean hasNotMoved(String id) {
+		if(graph.getNode(id).hasAttribute("ui.selected")){
+			System.out.println("Node selected " + id);
+		}
+		return Arrays.equals(positions.get(id), Toolkit.nodePosition(graph, id));
 	}
 
 	public View getView() {

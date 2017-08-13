@@ -21,12 +21,13 @@ import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
+import javax.swing.JButton;
 
 @Component
 public class Host {
 
 	private JFrame frmSassenrath;
-	private JTextField textField;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -105,22 +106,25 @@ public class Host {
 		
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
-		
+		JToolBar toolBar = new JToolBar();
+		frmSassenrath.getContentPane().add(toolBar, BorderLayout.NORTH);
+
 		Example w = new Example();
 		frmSassenrath.getContentPane().add((java.awt.Component) w.getView(), BorderLayout.CENTER);
 
-		/*
-		JFrame splitPane = new JFrame();
-		frmSassenrath.getContentPane().add(splitPane, BorderLayout.CENTER);
-		Example w = new Example();
 		
-		splitPane.getContentPane().add((java.awt.Component) w.getView());
+		//JPanel p = new JPanel();
+		//frmSassenrath.getContentPane().add(p, BorderLayout.CENTER);
+				
+		JButton btnNewButton = new JButton("New button");
+		toolBar.add(btnNewButton);
 		
-		//textField = new JTextField();
-		//splitPane.setLeftComponent(textField);
-		//textField.setColumns(10);
-		 * 
-		 */
+		JButton btnNewButton_1 = new JButton("New button");
+		toolBar.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("New button");
+		toolBar.add(btnNewButton_2);
+
 	}
 
 }
