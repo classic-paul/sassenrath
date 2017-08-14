@@ -17,7 +17,7 @@ import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
 
 @Component
-public class Example implements ViewerListener {
+public class GraphStreamUI implements ViewerListener {
 	protected boolean loop = true;
 	protected Viewer viewer;
 	protected View view;
@@ -26,13 +26,13 @@ public class Example implements ViewerListener {
 	Map<String, double[]> positions = new HashMap<String, double[]>();
 
 	public static void main(String args[]) {
-		new Example();
+		new GraphStreamUI();
 	}
 
 	// TODO style sheet for nodes
 	// TODO when implementing, a factory which adds necessary attributes to
 	// nodes would be a good idea
-	public Example() {
+	public GraphStreamUI() {
 		System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
 
 		graph = new SingleGraph("Clicks");

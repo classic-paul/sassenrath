@@ -1,26 +1,17 @@
 package SassenrathGUI;
 
 import java.awt.EventQueue;
-import java.awt.Frame;
-
 import javax.swing.JFrame;
 import org.osgi.service.component.annotations.*;
-
-import GraphStream.Example;
-
+import GraphStream.GraphStreamUI;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JMenu;
 import javax.swing.JSeparator;
-import javax.swing.JSplitPane;
-import javax.swing.JTextField;
-import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 
@@ -109,21 +100,12 @@ public class Host {
 		JToolBar toolBar = new JToolBar();
 		frmSassenrath.getContentPane().add(toolBar, BorderLayout.NORTH);
 
-		Example w = new Example();
+		GraphStreamUI w = new GraphStreamUI();
 		frmSassenrath.getContentPane().add((java.awt.Component) w.getView(), BorderLayout.CENTER);
 
 		
 		//JPanel p = new JPanel();
 		//frmSassenrath.getContentPane().add(p, BorderLayout.CENTER);
-				
-		JButton btnNewButton = new JButton("New button");
-		toolBar.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		toolBar.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("New button");
-		toolBar.add(btnNewButton_2);
 
 	}
 
