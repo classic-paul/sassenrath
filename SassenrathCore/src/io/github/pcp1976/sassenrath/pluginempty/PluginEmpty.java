@@ -10,7 +10,7 @@ import io.github.pcp1976.sassenrath.util.PipeHost;
 @Component
 public class PluginEmpty extends PipeHost implements PluginFactory, Swappable {
 	private static final Logger logger = LoggerFactory.getLogger(PluginEmpty.class);
-	private final String name = "Empty"; 
+	private final String name = "Empty";
 
 	@Override
 	public Plugin buildPlugin() {
@@ -20,30 +20,33 @@ public class PluginEmpty extends PipeHost implements PluginFactory, Swappable {
 			p = ConcretePluginFactory.createFactory(BehaviourEmpty.class, this.getName()).create();
 		} catch (Exception e) {
 			logger.error("buildPlugin() - exception ignored: ", e);
-		}finally{
-		logger.info("buildPlugin() - Plugin p={}", p);
-		logger.debug("buildPlugin() - end");
+		} finally {
+			logger.info("buildPlugin() - Plugin p={}", p);
+			logger.debug("buildPlugin() - end");
 		}
 		return p;
 	}
-	
-	public void updateJobs(){
+
+	public void updateJobs() {
 		logger.debug("updateJobs() - start");
 		logger.warn("updateJobs() - {} has no jobs", getName());
-		logger.debug("updateJobs() - end");	
+		logger.debug("updateJobs() - end");
 	}
-	
+
+	//TODO do we really need these? Should the logging just be placed in the parent class?
 	@Override
-	public String getName(){
+	public String getName() {
 		logger.debug("getName() - start");
-		logger.info("getName() - name={}", this.name);		
+		logger.info("getName() - name={}", this.name);
 		logger.debug("getName() - end");
 		return this.name;
 	}
 
 	@Override
-	public Plugin swap(PluginFactory newPluginFactory) {
+	public Plugin swapFor(PluginFactory newPluginFactory) {
 		// PluginEmpty has no sinks or sources, safe to return new plugin
+		// without worrying about sources/sinks
+		logger.debug("swap() - started");
 		return newPluginFactory.buildPlugin();
 	}
 }

@@ -162,7 +162,7 @@ public class ControllerImpl implements Controller {
 		return n;
 	}
 
-	public Plugin replacePlugin(Swappable oldPlugin, PluginFactory newPluginFactory){
-		return oldPlugin.swap(newPluginFactory);
+	public Plugin swap(Swappable oldPlugin, PluginFactory newPluginFactory){
+		return oldPlugin.swapFor(newPluginFactory);
 	}
 }

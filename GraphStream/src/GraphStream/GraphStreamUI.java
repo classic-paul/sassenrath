@@ -25,7 +25,7 @@ public class GraphStreamUI implements ViewerListener {
 	protected ViewerPipe fromViewer;
 	Map<String, double[]> positions = new HashMap<String, double[]>();
 
-	// TODO style sheet for nodes
+	// FIXME style sheet for nodes
 	// TODO when implementing, a factory which adds necessary attributes to
 	// nodes would be a good idea
 	public GraphStreamUI() {

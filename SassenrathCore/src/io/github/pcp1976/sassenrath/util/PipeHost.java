@@ -43,7 +43,7 @@ public class PipeHost implements Pipe {
 	@Override
 	public void updateJobs() {
 		//TODO perhaps don't need to clear completely? Need to consider this carefully
-		this.setJobList(null);
+		this.setJobList(new ArrayList<>());
 		for (Source server : this.getIsSinkOf()) {
 			for (Job serverJob : server.getJobList()) {
 				Job newJob = new ConcreteJob();
