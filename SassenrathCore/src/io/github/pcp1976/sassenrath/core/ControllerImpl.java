@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.github.pcp1976.sassenrath.api.Controller;
 import io.github.pcp1976.sassenrath.api.extend.*;
+import io.github.pcp1976.sassenrath.pluginempty.PluginEmpty;
 
 import java.util.List;
 
@@ -12,6 +13,21 @@ import java.util.List;
 public class ControllerImpl implements Controller {
 	private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
 	private List<Plugin> pluginGraph;
+	private PluginFactory defaultPluginFactory;
+	
+	public ControllerImpl(){
+			this(new PluginEmpty());
+	}
+	
+	public ControllerImpl(PluginFactory defaultPlugin){
+		this.setDefaultPlugin(defaultPlugin);
+	}	
+	
+	@Override
+	public void setDefaultPlugin(PluginFactory pluginFactory) {
+		this.defaultPluginFactory = pluginFactory;
+		
+	}
 
 	//TODO refactor addSource() and addSink()
 	private boolean addSource(Plugin sink, Plugin source) {
@@ -137,4 +153,16 @@ public class ControllerImpl implements Controller {
 		logger.error("configurePlugin(Plugin plugin) called: this method is not yet implemented");
 	}
 
+	@Override
+	public Plugin getNewPlugin() {
+		logger.debug("getNewPlugin() - start");
+		Plugin n = defaultPluginFactory.buildPlugin();
+		logger.debug("getNewPlugin() - returning {}", n);	
+		logger.debug("getNewPlugin() - end");
+		return n;
+	}
+
+	public Plugin replacePlugin(Swappable oldPlugin, PluginFactory newPluginFactory){
+		return oldPlugin.swap(newPluginFactory);
+	}
 }

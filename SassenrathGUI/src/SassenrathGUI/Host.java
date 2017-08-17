@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JMenu;
 import javax.swing.JSeparator;
 import javax.swing.JToolBar;
-import javax.swing.JButton;
+import javax.swing.JSplitPane;
 
 @Component
 public class Host {
@@ -40,6 +40,7 @@ public class Host {
 	private void initialize() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			System.setProperty("sassenrath.UIDesignMode", "true");
 		} catch (UnsupportedLookAndFeelException e) {
 			// handle exception
 		} catch (ClassNotFoundException e) {
@@ -99,14 +100,18 @@ public class Host {
 		menuBar.add(mnHelp);
 		JToolBar toolBar = new JToolBar();
 		frmSassenrath.getContentPane().add(toolBar, BorderLayout.NORTH);
-
-		GraphStreamUI w = new GraphStreamUI();
-		frmSassenrath.getContentPane().add((java.awt.Component) w.getView(), BorderLayout.CENTER);
-
 		
-		//JPanel p = new JPanel();
-		//frmSassenrath.getContentPane().add(p, BorderLayout.CENTER);
+		JSplitPane splitPane = new JSplitPane();
+		frmSassenrath.getContentPane().add(splitPane, BorderLayout.CENTER);
 
+		if(System.getProperty("sassenrath.UIDesignMode").equals("true")){
+			JPanel p = new JPanel();
+			splitPane.setRightComponent(p);
+		}else{
+			GraphStreamUI p = new GraphStreamUI();
+			splitPane.setRightComponent((java.awt.Component) p.getView());
+		}
+		
 	}
 
 }

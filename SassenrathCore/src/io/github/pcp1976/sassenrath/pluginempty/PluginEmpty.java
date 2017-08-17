@@ -8,7 +8,7 @@ import io.github.pcp1976.sassenrath.util.ConcretePluginFactory;
 import io.github.pcp1976.sassenrath.util.PipeHost;
 
 @Component
-public class PluginEmpty extends PipeHost implements PluginFactory {
+public class PluginEmpty extends PipeHost implements PluginFactory, Swappable {
 	private static final Logger logger = LoggerFactory.getLogger(PluginEmpty.class);
 	private final String name = "Empty"; 
 
@@ -39,5 +39,11 @@ public class PluginEmpty extends PipeHost implements PluginFactory {
 		logger.info("getName() - name={}", this.name);		
 		logger.debug("getName() - end");
 		return this.name;
+	}
+
+	@Override
+	public Plugin swap(PluginFactory newPluginFactory) {
+		// PluginEmpty has no sinks or sources, safe to return new plugin
+		return newPluginFactory.buildPlugin();
 	}
 }

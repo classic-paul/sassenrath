@@ -3,6 +3,7 @@ package io.github.pcp1976.sassenrath.api;
 import java.util.List;
 
 import io.github.pcp1976.sassenrath.api.extend.Plugin;
+import io.github.pcp1976.sassenrath.api.extend.PluginFactory;
 
 public interface Controller {
 	public boolean linkSourceAndSink(Plugin source, Plugin sink);
@@ -12,4 +13,6 @@ public interface Controller {
 	public void configurePlugin(Plugin plugin);
 	public List<Plugin> getPluginGraph();
 	public void setPluginGraph(List<Plugin> pluginGraph);
+	public Plugin getNewPlugin();
+	public void setDefaultPlugin(PluginFactory pluginFactory);
 }
