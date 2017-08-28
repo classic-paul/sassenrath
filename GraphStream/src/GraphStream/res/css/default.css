@@ -1,0 +1,29 @@
+node {
+	icon: dyn-icon;
+	icon-mode: at-left; 
+	size-mode: fit;
+	shape: rounded-box;
+	fill-color: white;
+	padding: 3;
+	stroke-color: black;
+	stroke-mode: plain;
+}
+
+node:selected {
+	stroke-color: rgb(255,0,0);
+}
+
+node.source {
+	fill-color: rgb(216, 236, 209);
+	icon: url('GraphStream/res/img/noun_379625_cc[creative stall, non project].png');
+}
+
+node.sink {
+	fill-color: rgb(252, 227, 238);
+	icon: url('GraphStream/res/img/pipe.png');
+}
+
+node.pipe {
+	fill-color: rgb(255, 234, 208);
+	icon: url('GraphStream/res/img/noun_353981_cc[sink drain by Arthur Shlain from the Noun Project].png');
+}
